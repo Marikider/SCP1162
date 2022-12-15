@@ -13,7 +13,7 @@ namespace SCP1162
         public bool ShouldHeart { get; set; } = true;
         public string HeartHint { get; set; } = "<color=red>Do not use SCP-1162 with no item handed!</color>";
         public int HealthMinus { get; set; } = 15;
-        public string InteratingHint { get; set; } = "<color=yellow>Yo Have Used SCP-1162 and You've Changed Your Item!</color>";
+        public string InteraktingHint { get; set; } = "<color=yellow>You Have Used SCP-1162 and You've Changed Your Item!</color>";
         
         public List<ItemType> ItemsToGive { get; set; } = new List<ItemType>
         {

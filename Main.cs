@@ -72,7 +72,7 @@ namespace SCP1162
                 {
                     ev.Player.RemoveItem(ev.Player.CurrentItem);
                     ev.Player.AddItem(Config.ItemsToGive.RandomItem());
-                    ev.Player.ShowHint(Config.InteratingHint,3);
+                    ev.Player.ShowHint(Config.InteraktingHint,3);
                 }
                 else
                 {
