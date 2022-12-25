@@ -30,7 +30,7 @@ namespace SCP1162
         public List<Exiled.API.Features.Player> players = Exiled.API.Features.Player.List.ToList();
         private ushort Scp1162;
         public Pickup item;
-        public List<ItemType> items = new List<ItemType>() {ItemType.KeycardO5};
+     
         
         public override void OnEnabled()
         {
