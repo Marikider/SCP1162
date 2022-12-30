@@ -3,7 +3,7 @@ An EXILED Plugin Which is Adding SCP-1162 into Scp-173 Chamber.
 Also This Plugin Contains My Infinity Ammo Plugin.
 ![alt text](https://github.com/Marikider/SCP1162/blob/main/image.png?raw=true)
 # Config
-Scp-1162:\n
+```Scp-1162:
   is_enabled: true
   debug: true
   should_heart: true
@@ -33,6 +33,6 @@ Scp-1162:\n
   - KeycardScientist
   - KeycardJanitor
   - Coin
-  - Flashlight
+  - Flashlight```
 
 
