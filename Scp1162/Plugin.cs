@@ -53,18 +53,7 @@ namespace SCP1162
 
         }
 
-        private void Player_DroppingAmmo(DroppingAmmoEventArgs ev)
-        {
-            ev.IsAllowed= false;
-        }
 
-        private void Player_Dying(DyingEventArgs ev)
-        {
-            foreach(Exiled.API.Features.Items.Item ammo in ev.Player.Items.Where(x=>x.IsAmmo))
-            {
-                ev.Player.RemoveItem(ammo);
-            }
-        }
 
         private void Server_RoundStarted()
         {
@@ -90,7 +79,7 @@ namespace SCP1162
         private void PickingScp1162(PickingUpItemEventArgs ev)
         {
             
-            if (Scp1162 == ev.Pickup.Serial)
+            if (item == ev.Pickup)
             {
                 if (ev.Player.CurrentItem != null)
                 {
