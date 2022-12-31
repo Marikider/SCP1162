@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Exiled.API.Enums;
-using System.Drawing;
+
 using System.Numerics;
 using Exiled.API.Features.Items;
 using Mirror;
@@ -49,9 +49,6 @@ namespace SCP1162
             Exiled.Events.Handlers.Player.PickingUpItem += PickingScp1162;
 
             Exiled.Events.Handlers.Server.RoundStarted += Server_RoundStarted;
-            Exiled.Events.Handlers.Player.Dying += Player_Dying;
-            Exiled.Events.Handlers.Player.DroppingAmmo += Player_DroppingAmmo;
-            
 
 
         }
@@ -83,8 +80,7 @@ namespace SCP1162
             scp1162.transform.localRotation = UnityEngine.Quaternion.Euler(90, 1, 0);
             scp1162.transform.localScale = new UnityEngine.Vector3(10, 10, 10);
             NetworkServer.Spawn(scp1162);
-            Log.Info(scp1162.transform.position);
-            Timing.CallDelayed(1f, () => {InfAmmo();});
+
             
 
         }
@@ -120,24 +116,7 @@ namespace SCP1162
 
         }
         
-        void InfAmmo()
-        {
-            
-            
-            foreach (Exiled.API.Features.Player player in Exiled.API.Features.Player.List)
-            {
-                foreach (AmmoType ammo in new List<AmmoType>() { AmmoType.Nato556, AmmoType.Nato762, AmmoType.Nato9, AmmoType.Ammo44Cal, AmmoType.Ammo12Gauge })
-                {
-                    if (!player.IsCuffed)
-                        foreach (Exiled.API.Features.Items.Item ammo1 in player.Items.Where(x=>x.IsAmmo))
-                        { 
-                            player.RemoveItem(ammo1);
-                        }
-                        player.SetAmmo(ammo, 100);
-                }
-            }
-            Timing.CallDelayed(0f, () => InfAmmo());
-        }
+
 
     }
 

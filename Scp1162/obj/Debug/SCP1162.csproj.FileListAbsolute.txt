@@ -164,3 +164,11 @@ C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\UnityEngine.XRModule.dll
 C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\UnityEngine.InputModule.dll
 C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\marka\RiderProjects\SCP1162\Scp1162\obj\Debug\SCP1162.csproj.CopyComplete
+C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\CommandSystem.Core.dll
+C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\Exiled.Loader.dll
+C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\FastElevators.dll
+C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\Mirror.dll
+C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\Newtonsoft.Json.dll
+C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\NorthwoodLib.dll
+C:\Users\marka\RiderProjects\SCP1162\Scp1162\bin\Debug\FastElevators.pdb

@@ -13,9 +13,9 @@ namespace SCP1162
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = true;
         public bool ShouldHeart { get; set; } = true;
-        public string HeartHint { get; set; } = "<color=red>Не Используй SCP-1162 Без Предмета в Руках!</color>";
+        public string HeartHint { get; set; } = "<color=red>Dont Use SCP1162, without item handed.</color>";
         public int HealthMinus { get; set; } = 15;
-        public string InteraktingHint { get; set; } = "<i>Вы Засунули Предмет в </i><color=yellow>SCP-1162</color><i> и Получили Другой!</i>";
+        public string InteraktingHint { get; set; } = "<i>You Putted an iten into </i><color=yellow>SCP-1162</color><i> and got Another!</i>";
         
         public List<ItemType> ItemsToGive { get; set; } = new List<ItemType>
         {
