@@ -52,6 +52,16 @@ namespace SCP1162
 
 
         }
+        public override void OnDisabled()
+        {
+            plugin = this;
+            base.OnDisabled();
+            Exiled.Events.Handlers.Player.PickingUpItem += PickingScp1162;
+
+            Exiled.Events.Handlers.Server.RoundStarted += Server_RoundStarted;
+
+
+        }
 
 
 
@@ -65,13 +75,14 @@ namespace SCP1162
             scp1162.GetComponent<Rigidbody>().useGravity = false;
             scp1162.GetComponent<Rigidbody>().drag = 0f;
             scp1162.GetComponent<Rigidbody>().freezeRotation = true;
+            scp1162.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
+            scp1162.isStatic = true;
             scp1162.transform.localPosition=new Vector3(17f,13.1f,3f);
             scp1162.transform.localRotation = UnityEngine.Quaternion.Euler(90, 1, 0);
             scp1162.transform.localScale = new UnityEngine.Vector3(10, 10, 10);
+            scp1162.active = false;
+            item.Weight = 1;
             NetworkServer.Spawn(scp1162);
-
-            
-
         }
 
 
@@ -79,7 +90,7 @@ namespace SCP1162
         private void PickingScp1162(PickingUpItemEventArgs ev)
         {
             
-            if (item == ev.Pickup)
+            if (Scp1162 == ev.Pickup.Serial)
             {
                 if (ev.Player.CurrentItem != null)
                 {
@@ -91,7 +102,7 @@ namespace SCP1162
                 {
                     if (Config.ShouldHeart)
                     {
-                        ev.Player.Hurt(Config.HealthMinus);
+                        ev.Player.Hurt(Config.HealthMinus,DamageType.Custom);
                         ev.Player.EnableEffect(EffectType.Burned, 3);
                         ev.Player.ShowHint(Config.HeartHint, 3);
                     }
