@@ -37,9 +37,6 @@ namespace SCP1162
         public override string Author => "Mariki";
         public override System.Version Version { get; } = new System.Version(1, 0, 0);
         public static Plugin plugin;
-        public List<Exiled.API.Features.Player> players = Exiled.API.Features.Player.List.ToList();
-        public ushort Scp1162;
-        public Pickup item;
         public EventHandler EventHandler;
 
 
