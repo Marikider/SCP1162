@@ -30,11 +30,12 @@ namespace SCP1162
 {
     public class EventHandler
     {
+        public ushort Scp1162;
         public void SpawnScp1162()
         {
             Pickup item = Exiled.API.Features.Items.Item.Create(ItemType.SCP500).CreatePickup(UnityEngine.Vector3.zero);
             GameObject scp1162 = item.GameObject;
-            Plugin.plugin.Scp1162 = item.Serial;
+            Scp1162 = item.Serial;
             NetworkServer.UnSpawn(scp1162);
             scp1162.transform.parent = Room.List.First(x => x.Type == RoomType.Lcz173).transform;
             scp1162.GetComponent<Rigidbody>().useGravity = false;
@@ -54,7 +55,7 @@ namespace SCP1162
         public void PickingScp1162(PickingUpItemEventArgs ev)
         {
 
-            if (Plugin.plugin.Scp1162 == ev.Pickup.Serial)
+            if (Scp1162 == ev.Pickup.Serial)
             {
                 if (ev.Player.CurrentItem != null)
                 {
