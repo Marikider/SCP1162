@@ -12,10 +12,10 @@ namespace SCP1162
     {
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = true;
-        public bool ShouldHeart { get; set; } = true;
-        public string HeartHint { get; set; } = "<color=red>Dont Use SCP1162, without item handed.</color>";
-        public int HealthMinus { get; set; } = 15;
-        public string InteraktingHint { get; set; } = "<i>You Putted an iten into </i><color=yellow>SCP-1162</color><i> and got Another!</i>";
+        public bool ShouldHurt { get; set; } = true;
+        public string HurtHint { get; set; } = "<color=red>Dont Use SCP1162, without item handed.</color>";
+        public int Damage_Amount { get; set; } = 15;
+        public string InteractingHint { get; set; } = "<i>You Putted an iten into </i><color=yellow>SCP-1162</color><i> and got Another!</i>";
         
         public List<ItemType> ItemsToGive { get; set; } = new List<ItemType>
         {

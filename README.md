@@ -7,9 +7,9 @@ Also This Plugin Contains My Infinity Ammo Plugin.
   is_enabled: true
   debug: true
   should_heart: true
-  heart_hint: <color=red>Dont Use SCP1162, without item handed.</color> this is translation of hearting hint.
-  health_minus: 15
-  interakting_hint: <i>You Putted an iten into </i><color=yellow>SCP-1162</color><i> and got Another!</i> - This is translation of changing item hint.
+  hurt_hint: <color=red>Dont Use SCP1162, without item handed.</color> this is translation of hearting hint.
+  damage_amount: 15
+  interacting_hint: <i>You Putted an iten into </i><color=yellow>SCP-1162</color><i> and got Another!</i> - This is translation of changing item hint.
   items_to_give:
   - KeycardO5
   - SCP500

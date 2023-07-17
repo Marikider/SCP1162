@@ -61,15 +61,15 @@ namespace SCP1162
                 {
                     ev.Player.RemoveItem(ev.Player.CurrentItem);
                     ev.Player.AddItem(Plugin.plugin.Config.ItemsToGive.RandomItem());
-                    ev.Player.ShowHint(Plugin.plugin.Config.InteraktingHint, 3);
+                    ev.Player.ShowHint(Plugin.plugin.Config.InteractingHint, 3);
                 }
                 else
                 {
-                    if (Plugin.plugin.Config.ShouldHeart)
+                    if (Plugin.plugin.Config.ShouldHurt)
                     {
-                        ev.Player.Hurt(Plugin.plugin.Config.HealthMinus, DamageType.Custom);
+                        ev.Player.Hurt(Plugin.plugin.Config.Damage_Amount, DamageType.Custom);
                         ev.Player.EnableEffect(EffectType.Burned, 3);
-                        ev.Player.ShowHint(Plugin.plugin.Config.HeartHint, 3);
+                        ev.Player.ShowHint(Plugin.plugin.Config.HurtHint, 3);
                     }
 
                 }
