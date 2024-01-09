@@ -13,19 +13,9 @@ using Random = UnityEngine.Random;
 using Exiled.API.Enums;
 using System.Numerics;
 using Exiled.API.Features.Items;
-using Mirror;
-using System.Collections;
 using Exiled.Events.EventArgs.Player;
-using Exiled.Events.Handlers;
-using InventorySystem.Items;
-using CommandSystem.Commands.Console;
 using Exiled.API.Features.Pickups;
-using Exiled.API.Extensions;
-using Exiled.API.Features.Roles;
-using PlayerRoles;
-using Exiled.API.Features.DamageHandlers;
-using PlayerStatsSystem;
-using System.Diagnostics;
+
 
 namespace SCP1162
 {
@@ -71,9 +61,9 @@ namespace SCP1162
             {
                 if (ev.Player.CurrentItem != null)
                 {
-                    ev.Player.RemoveItem(ev.Player.CurrentItem);
-                    ev.Player.AddItem(Plugin.plugin.Config.ItemsToGive.RandomItem());
-                    ev.Player.ShowHint(Plugin.plugin.Config.InteraktingHint, 3);
+                    ev.Player.RemoveHeldItem();
+                    ev.Player.CurrentItem = null;
+                    Timing.CallDelayed(0.1f, () => ev.Player.CurrentItem = Item.Create(Plugin.plugin.Config.ItemsToGive.RandomItem()));
                 }
                 else
                 {
