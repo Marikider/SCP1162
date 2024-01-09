@@ -1,2 +1,4 @@
 C:\Users\marka\Source\Repos\SCP1162\Scp1162\obj\Debug\SCP1162.csproj.AssemblyReference.cache
 C:\Users\marka\Source\Repos\SCP1162\Scp1162\obj\Debug\SCP1162.csproj.CoreCompileInputs.cache
+C:\Users\egor\Source\Repos\SCP1162Updating\Scp1162\obj\Debug\SCP1162.csproj.AssemblyReference.cache
+C:\Users\egor\Source\Repos\SCP1162Updating\Scp1162\obj\Debug\SCP1162.csproj.CoreCompileInputs.cache

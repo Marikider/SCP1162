@@ -25,28 +25,40 @@ using Exiled.API.Features.Roles;
 using PlayerRoles;
 using Exiled.API.Features.DamageHandlers;
 using PlayerStatsSystem;
+using System.Diagnostics;
 
 namespace SCP1162
 {
     public class EventHandler
     {
         public ushort Scp1162;
+        public Vector3 GetGlobalCords(Vector3 localCords, Room room)
+        {
+            Quaternion rotation = room.Rotation;
+            if (Math.Abs(rotation.eulerAngles.y - 0.0f) < 1.0)
+                return new Vector3(room.Position.x + localCords.x, room.Position.y + localCords.y, room.Position.z + localCords.z);
+            if (Math.Abs(rotation.eulerAngles.y - 90f) < 1.0)
+                return new Vector3(room.Position.x + localCords.z, room.Position.y + localCords.y, room.Position.z - localCords.x);
+           
+            if (Math.Abs(rotation.eulerAngles.y - 180f) < 1.0)
+                return new Vector3(room.Position.x - localCords.x, room.Position.y + localCords.y, room.Position.z - localCords.z);
+            return Math.Abs((rotation).eulerAngles.y - 270f) < 1.0 ? new Vector3(room.Position.x - localCords.z, room.Position.y + localCords.y, room.Position.z + localCords.x) : new Vector3(111f, 222f, 333f);
+        }
         public void SpawnScp1162()
         {
-            Pickup item = Exiled.API.Features.Items.Item.Create(ItemType.SCP500).CreatePickup(UnityEngine.Vector3.zero);
-            GameObject scp1162 = item.GameObject;
-            Scp1162 = item.Serial;
-            NetworkServer.UnSpawn(scp1162);
-            scp1162.transform.parent = Room.List.First(x => x.Type == RoomType.Lcz173).transform;
-            scp1162.GetComponent<Rigidbody>().useGravity = false;
-            scp1162.GetComponent<Rigidbody>().drag = 0f;
-            scp1162.GetComponent<Rigidbody>().freezeRotation = true;
-            scp1162.isStatic = true;
-            scp1162.SetActive(false);
-            scp1162.transform.localPosition = new Vector3(17f, 13.1f, 3f);
-            scp1162.transform.localRotation = UnityEngine.Quaternion.Euler(90, 1, 0);
-            scp1162.transform.localScale = new UnityEngine.Vector3(10, 10, 10);
-            NetworkServer.Spawn(scp1162);
+            Vector3 localPos = new Vector3(17f, 13.1f, 3f);
+            Vector3 rot= new Vector3(90f, 1f, 0.0f);
+            Room room = Room.Get(RoomType.Lcz173);
+            Vector3 globalCords = GetGlobalCords(localPos, room);
+            Quaternion rotation = room.Rotation;
+            Quaternion quaternion = Quaternion.Euler(rot.x, rotation.eulerAngles.y + rot.y, rot.z);
+            Pickup scp1162pick = Pickup.CreateAndSpawn(ItemType.SCP500, globalCords, quaternion);
+            scp1162pick.Rigidbody.useGravity = false;
+            scp1162pick.Rigidbody.detectCollisions = false;
+            scp1162pick.Scale = new Vector3(10,10,10);
+            Scp1162 = scp1162pick.Serial;
+
+
         }
         public void OnRoundStart()
         {

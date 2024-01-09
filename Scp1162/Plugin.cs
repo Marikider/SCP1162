@@ -1,8 +1,6 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
-using Respawning.NamingRules;
-using Respawning;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using Exiled.API.Enums;
-
-using System.Numerics;
-using Exiled.API.Features.Items;
-using Mirror;
-using System.Collections;
-using Exiled.Events.EventArgs.Player;
-using Exiled.Events.Handlers;
-using InventorySystem.Items;
-using CommandSystem.Commands.Console;
-using Exiled.API.Features.Pickups;
-using Exiled.API.Extensions;
-using Exiled.API.Features.Roles;
-using PlayerRoles;
-using Exiled.API.Features.DamageHandlers;
-using PlayerStatsSystem;
-
-
 namespace SCP1162
 {
     public class Plugin : Plugin<Config>
