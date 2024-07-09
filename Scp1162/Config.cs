@@ -1,10 +1,6 @@
 ﻿using Exiled.API.Interfaces;
-using InventorySystem.Items;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace SCP1162
 {
@@ -12,19 +8,24 @@ namespace SCP1162
     {
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = true;
-        public bool ShouldHeart { get; set; } = true;
-        public string HeartHint { get; set; } = "<color=red>Dont Use SCP1162, without item handed.</color>";
-        public int HealthMinus { get; set; } = 15;
-        public string InteraktingHint { get; set; } = "<i>You Putted an iten into </i><color=yellow>SCP-1162</color><i> and got Another!</i>";
-        
+        [Description("Should a user get damaged when interacting with Scp-1162 without holding an item in hand")]
+        public bool ShouldDamage { get; set; } = true;
+        [Description("Message sent when interacting with Scp-1162 without holding an item in hand")]
+        public string DamageHint { get; set; } = "<color=red>Dont stick your Hand in unknown holes ( ͡° ͜ʖ ͡° )</color>";
+        [Description("Minimum Health to use Scp-1162")]
+        public int HealthMinus { get; set; } = 25;
+        [Description("Message sent when interacting with Scp-1162")]
+        public string InteractionHint { get; set; } = "<i>You put an item into </i><color=yellow>SCP-1162</color><i> and got Another!</i>";
+        [Description("The chance that the item disappears in % (set to 0 to disable)")]
+        public float PercentDisappearing { get; set; } = 40;
+        [Description("Message sent when the item disappears")]
+        public string LostItemHint { get; set; } = "<color=red>You lost your item</color>";
+        [Description("What items should Scp-1162 be able to give")]
         public List<ItemType> ItemsToGive { get; set; } = new List<ItemType>
         {
             ItemType.KeycardO5,
             ItemType.SCP500,
-            ItemType.MicroHID,
             ItemType.KeycardMTFOperative,
-            ItemType.KeycardContainmentEngineer,
-            ItemType.SCP268,
             ItemType.GunCOM15,
             ItemType.SCP207,
             ItemType.Adrenaline,

@@ -1,13 +1,4 @@
 ﻿using Exiled.API.Features;
-using Exiled.Events.EventArgs;
-using MEC;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Random = UnityEngine.Random;
 namespace SCP1162
 {
     public class Plugin : Plugin<Config>

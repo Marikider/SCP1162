@@ -1,30 +1,24 @@
 ﻿using Exiled.API.Features;
-using Exiled.Events.EventArgs;
 using MEC;
-using Respawning.NamingRules;
-using Respawning;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Random = UnityEngine.Random;
 using Exiled.API.Enums;
-using System.Numerics;
 using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs.Player;
 using Exiled.API.Features.Pickups;
+using Quaternion = UnityEngine.Quaternion;
+using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 
 namespace SCP1162
 {
     public class EventHandler
     {
-        public ushort Scp1162;
-        public Vector3 GetGlobalCords(Vector3 localCords, Room room)
+        private ushort _scp1162;
+
+        private static Vector3 GetGlobalCords(Vector3 localCords, Room room)
         {
-            Quaternion rotation = room.Rotation;
+            var rotation = room.Rotation;
             if (Math.Abs(rotation.eulerAngles.y - 0.0f) < 1.0)
                 return new Vector3(room.Position.x + localCords.x, room.Position.y + localCords.y, room.Position.z + localCords.z);
             if (Math.Abs(rotation.eulerAngles.y - 90f) < 1.0)
@@ -34,49 +28,63 @@ namespace SCP1162
                 return new Vector3(room.Position.x - localCords.x, room.Position.y + localCords.y, room.Position.z - localCords.z);
             return Math.Abs((rotation).eulerAngles.y - 270f) < 1.0 ? new Vector3(room.Position.x - localCords.z, room.Position.y + localCords.y, room.Position.z + localCords.x) : new Vector3(111f, 222f, 333f);
         }
-        public void SpawnScp1162()
+        
+        private void SpawnScp1162()
         {
-            Vector3 localPos = new Vector3(17f, 13.1f, 3f);
-            Vector3 rot= new Vector3(90f, 1f, 0.0f);
-            Room room = Room.Get(RoomType.Lcz173);
-            Vector3 globalCords = GetGlobalCords(localPos, room);
-            Quaternion rotation = room.Rotation;
-            Quaternion quaternion = Quaternion.Euler(rot.x, rotation.eulerAngles.y + rot.y, rot.z);
-            Pickup scp1162pick = Pickup.CreateAndSpawn(ItemType.SCP500, globalCords, quaternion);
-            scp1162pick.Rigidbody.useGravity = false;
-            scp1162pick.Rigidbody.detectCollisions = false;
-            scp1162pick.Scale = new Vector3(10,10,10);
-            Scp1162 = scp1162pick.Serial;
-
-
+            var localPos = new Vector3(17f, 13.1f, 3f);
+            var rot= new Vector3(90f, 1f, 0.0f);
+            var room = Room.Get(RoomType.Lcz173);
+            var globalCords = GetGlobalCords(localPos, room);
+            var rotation = room.Rotation;
+            var quaternion = Quaternion.Euler(rot.x, rotation.eulerAngles.y + rot.y, rot.z);
+            var scp1162Pick = Pickup.CreateAndSpawn(ItemType.SCP500, globalCords, quaternion);
+            scp1162Pick.Rigidbody.useGravity = false;
+            scp1162Pick.Rigidbody.detectCollisions = false;
+            scp1162Pick.Scale = new Vector3(10,10,10);
+            _scp1162 = scp1162Pick.Serial;
         }
         public void OnRoundStart()
         {
             SpawnScp1162();
         }
+
+        private static void GiveItem(Player player)
+        {
+            player.ShowHint(Plugin.plugin.Config.InteractionHint,20);
+            player.RemoveHeldItem();
+            player.CurrentItem = null;
+            Timing.CallDelayed(0.1f, () => player.CurrentItem = Item.Create(Plugin.plugin.Config.ItemsToGive.RandomItem()));
+        }
         public void PickingScp1162(PickingUpItemEventArgs ev)
         {
-
-            if (Scp1162 == ev.Pickup.Serial)
+            if (_scp1162 != ev.Pickup.Serial) return;
+            var percentDisappearing = Plugin.plugin.Config.PercentDisappearing;
+            if (ev.Player.CurrentItem != null)
             {
-                if (ev.Player.CurrentItem != null)
-                {
-                    ev.Player.RemoveHeldItem();
-                    ev.Player.CurrentItem = null;
-                    Timing.CallDelayed(0.1f, () => ev.Player.CurrentItem = Item.Create(Plugin.plugin.Config.ItemsToGive.RandomItem()));
-                }
+                if (percentDisappearing == 0) GiveItem(ev.Player);
                 else
                 {
-                    if (Plugin.plugin.Config.ShouldHeart)
+                    var range = Random.Range(0f, 100f);
+                    Log.Info(range);
+                    if (range > percentDisappearing) GiveItem(ev.Player);
+                    else
                     {
-                        ev.Player.Hurt(Plugin.plugin.Config.HealthMinus, DamageType.Custom);
-                        ev.Player.EnableEffect(EffectType.Burned, 3);
-                        ev.Player.ShowHint(Plugin.plugin.Config.HeartHint, 3);
+                        ev.Player.RemoveHeldItem();
+                        ev.Player.ShowHint(Plugin.plugin.Config.LostItemHint, 10);
                     }
-
                 }
-                ev.IsAllowed = false;
             }
+            else
+            {
+                if (Plugin.plugin.Config.ShouldDamage)
+                {
+                    ev.Player.Hurt(Plugin.plugin.Config.HealthMinus, DamageType.Custom);
+                    ev.Player.EnableEffect(EffectType.Burned, 3);
+                    ev.Player.ShowHint(Plugin.plugin.Config.DamageHint, 15);
+                }
+
+            }
+            ev.IsAllowed = false;
         }
     }
 }
