@@ -17,7 +17,7 @@ namespace SCP1162
         [Description("Message sent when interacting with Scp-1162")]
         public string InteractionHint { get; set; } = "<i>You put an item into </i><color=yellow>SCP-1162</color><i> and got Another!</i>";
         [Description("The chance that the item disappears in % (set to 0 to disable)")]
-        public float PercentDisappearing { get; set; } = 40;
+        public float PercentDisappearing { get; set; } = 30;
         [Description("Message sent when the item disappears")]
         public string LostItemHint { get; set; } = "<color=red>You lost your item</color>";
         [Description("What items should Scp-1162 be able to give")]
