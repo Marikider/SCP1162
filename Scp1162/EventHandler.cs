@@ -64,9 +64,7 @@ namespace SCP1162
                 if (percentDisappearing == 0) GiveItem(ev.Player);
                 else
                 {
-                    var range = Random.Range(0f, 100f);
-                    Log.Info(range);
-                    if (range > percentDisappearing) GiveItem(ev.Player);
+                    if (Random.Range(0f, 100f) > percentDisappearing) GiveItem(ev.Player);
                     else
                     {
                         ev.Player.RemoveHeldItem();
