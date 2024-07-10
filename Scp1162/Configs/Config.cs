@@ -10,7 +10,7 @@ namespace SCP1162.Configs
         public bool Debug { get; set; } = true;
         [Description("Should a user get damaged when interacting with Scp-1162 without holding an item in hand")]
         public bool ShouldDamage { get; set; } = true;
-        [Description("Minimum Health to use Scp-1162")]
+        [Description("How much damage should players get when using Scp-1162 without holding an item in hand")]
         public int HealthMinus { get; set; } = 25;
         [Description("The chance that the item disappears in % (set to 0 to disable)")]
         public float PercentDisappearing { get; set; } = 30;
