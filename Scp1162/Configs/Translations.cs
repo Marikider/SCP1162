@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using Exiled.API.Interfaces;
 
-namespace SCP1162
+namespace SCP1162.Configs
 {
     public class Translations : ITranslation
 

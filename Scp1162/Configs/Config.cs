@@ -1,8 +1,8 @@
-﻿using Exiled.API.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Exiled.API.Interfaces;
 
-namespace SCP1162
+namespace SCP1162.Configs
 {
     public class Config : IConfig
     {
@@ -17,26 +17,30 @@ namespace SCP1162
         [Description("What items should Scp-1162 be able to give")]
         public List<ItemType> ItemsToGive { get; set; } = new List<ItemType>
         {
-            ItemType.KeycardO5,
-            ItemType.SCP500,
-            ItemType.KeycardMTFOperative,
-            ItemType.GunCOM15,
-            ItemType.SCP207,
-            ItemType.Adrenaline,
-            ItemType.GunCOM18,
-            ItemType.KeycardFacilityManager,
-            ItemType.Medkit,
-            ItemType.KeycardMTFCaptain,
-            ItemType.KeycardGuard,
-            ItemType.GrenadeHE,
-            ItemType.KeycardZoneManager,
-            ItemType.KeycardGuard,
-            ItemType.Radio,
-            ItemType.GrenadeFlash,
-            ItemType.KeycardScientist,
             ItemType.KeycardJanitor,
+            ItemType.KeycardZoneManager,
+            ItemType.KeycardScientist,
+            ItemType.KeycardContainmentEngineer,
+            ItemType.KeycardResearchCoordinator,
+            ItemType.KeycardMTFPrivate,
+            ItemType.KeycardMTFOperative,
+            ItemType.KeycardMTFCaptain,
+            ItemType.KeycardFacilityManager,
+            ItemType.KeycardChaosInsurgency,
+            ItemType.KeycardO5,
+            ItemType.GunCOM15,
+            ItemType.GunCOM18,
+            ItemType.Painkillers,
+            ItemType.Medkit,
+            ItemType.Adrenaline,
+            ItemType.SCP500,
+            ItemType.SCP207,
+            ItemType.AntiSCP207,
+            ItemType.GrenadeHE,
+            ItemType.GrenadeFlash,
             ItemType.Coin,
-            ItemType.Flashlight
+            ItemType.Flashlight,
+            ItemType.Radio,
         };
 
     }
