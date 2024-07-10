@@ -63,3 +63,7 @@ Scp-1162:
   # Message sent when the item disappears
   lost_item_hint: '<color=red>You lost your item</color>'
 ```
+
+# Credit
+<a href="https://github.com/Marikider"><img src="https://avatars.githubusercontent.com/u/68015763?v=4" width="50"></a>
+<a href="https://github.com/Vxrpenter"><img src="https://avatars.githubusercontent.com/u/110356385?v=4" width="50"></a>
