@@ -8,7 +8,7 @@ namespace SCP1162
         public override string Prefix => "Scp-1162";
         public override string Name => "Scp-1162";
         public override string Author => "Mariki";
-        public override System.Version Version { get; } = new System.Version(1, 1, 0);
+        public override System.Version Version { get; } = new System.Version(1, 8, 0);
         public static Plugin Instance;
         private EventHandler _eventHandler;
 
