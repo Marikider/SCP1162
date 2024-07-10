@@ -1,5 +1,5 @@
 # SCP1162 (EXILED)
-An EXILED Plugin Which is Adding SCP-1162 into Scp-173 Chamber.
+An EXILED plugin which adds SCP-1162 into Scp-173 chamber in the LCZ.
 ![alt text](https://github.com/Marikider/SCP1162/blob/main/image.png?raw=true)
 
 # Installation
