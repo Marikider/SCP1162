@@ -50,15 +50,15 @@ namespace SCP1162
 
         private static void GiveItem(Player player)
         {
-            player.ShowHint(Plugin.plugin.Config.InteractionHint,20);
+            player.ShowHint(Plugin.Instance.Translation.InteractionHint,20);
             player.RemoveHeldItem();
             player.CurrentItem = null;
-            Timing.CallDelayed(0.1f, () => player.CurrentItem = Item.Create(Plugin.plugin.Config.ItemsToGive.RandomItem()));
+            Timing.CallDelayed(0.1f, () => player.CurrentItem = Item.Create(Plugin.Instance.Config.ItemsToGive.RandomItem()));
         }
         public void PickingScp1162(PickingUpItemEventArgs ev)
         {
             if (_scp1162 != ev.Pickup.Serial) return;
-            var percentDisappearing = Plugin.plugin.Config.PercentDisappearing;
+            var percentDisappearing = Plugin.Instance.Config.PercentDisappearing;
             if (ev.Player.CurrentItem != null)
             {
                 if (percentDisappearing == 0) GiveItem(ev.Player);
@@ -68,17 +68,17 @@ namespace SCP1162
                     else
                     {
                         ev.Player.RemoveHeldItem();
-                        ev.Player.ShowHint(Plugin.plugin.Config.LostItemHint, 10);
+                        ev.Player.ShowHint(Plugin.Instance.Translation.LostItemHint, 10);
                     }
                 }
             }
             else
             {
-                if (Plugin.plugin.Config.ShouldDamage)
+                if (Plugin.Instance.Config.ShouldDamage) 
                 {
-                    ev.Player.Hurt(Plugin.plugin.Config.HealthMinus, DamageType.Custom);
+                    ev.Player.Hurt(Plugin.Instance.Config.HealthMinus, DamageType.Custom);
                     ev.Player.EnableEffect(EffectType.Burned, 3);
-                    ev.Player.ShowHint(Plugin.plugin.Config.DamageHint, 15);
+                    ev.Player.ShowHint(Plugin.Instance.Translation.DamageHint, 15);
                 }
 
             }
