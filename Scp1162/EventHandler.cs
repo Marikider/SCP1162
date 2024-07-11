@@ -86,7 +86,7 @@ namespace SCP1162
             }
             else
             {
-                if (Plugin.Instance.Config.ShouldDamage) 
+                if (Plugin.Instance.Config.HealthMinus != 0)
                 {
                     ev.Player.Hurt(Plugin.Instance.Config.HealthMinus, DamageType.Custom);
                     ev.Player.EnableEffect(EffectType.Burned, 3);
