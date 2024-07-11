@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Enums;
+using Exiled.API.Extensions;
 using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs.Player;
 using Exiled.API.Features.Pickups;
@@ -65,7 +66,10 @@ namespace SCP1162
             
             var range = Random.Range(0f, 100f);
             if (range > 50f) Timing.CallDelayed(0.1f, () => player.CurrentItem = items.RandomItem());
-            if (range > 50f) Timing.CallDelayed(0.1f, () => customItems.RandomItem().Give(player));
+           
+            var type = customItems.RandomItem().Type;
+            if (range < 50f) Timing.CallDelayed(0.1f, () => customItems.RandomItem().Give(player));
+            if (player.Inventory.TryGetInventoryItem(type, out var itemBase)) itemBase.EquipUpdate();
         }
         public void PickingScp1162(PickingUpItemEventArgs ev)
         {
