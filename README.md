@@ -63,7 +63,9 @@ Scp-1162:
   # Message sent when the item disappears
   lost_item_hint: '<color=red>You lost your item</color>'
 ```
-
+# Alpha Version / Test Branch
+> [!TIP]
+> Test versions with new features of this plugin that are experimental or/and have not been tested yet [here](https://github.com/Marikider/SCP1162/tree/alpha-testing)
 # Credit
 <a href="https://github.com/Marikider"><img src="https://avatars.githubusercontent.com/u/68015763?v=4" width="50"></a>
 <a href="https://github.com/Vxrpenter"><img src="https://avatars.githubusercontent.com/u/110356385?v=4" width="50"></a>
