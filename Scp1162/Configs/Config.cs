@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Exiled.API.Interfaces;
 
@@ -43,5 +44,7 @@ namespace SCP1162.Configs
             ItemType.Radio,
         };
 
+        [Description("If you have any custom items that Scp-1162 should be able to give players then add them here")]
+        public List<string> CustomItemsToGive { get; set; } = new List<string>();
     }
 }

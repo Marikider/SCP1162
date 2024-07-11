@@ -1,10 +1,15 @@
 ﻿using Exiled.API.Features;
 using MEC;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs.Player;
 using Exiled.API.Features.Pickups;
+using Exiled.CustomItems.API.Features;
+using InventorySystem;
+using InventorySystem.Items;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
@@ -50,10 +55,17 @@ namespace SCP1162
 
         private static void GiveItem(Player player)
         {
+            var items = Plugin.Instance.Config.ItemsToGive.Select(itemType => Item.Create(itemType)).ToList();
+            var customItems = new List<CustomItem>();
+            foreach (var customItem in Plugin.Instance.Config.CustomItemsToGive) if (CustomItem.TryGet(customItem, out var verifiedCustomItem)) customItems.Add(verifiedCustomItem);
+            
             player.ShowHint(Plugin.Instance.Translation.InteractionHint,20);
             player.RemoveHeldItem();
             player.CurrentItem = null;
-            Timing.CallDelayed(0.1f, () => player.CurrentItem = Item.Create(Plugin.Instance.Config.ItemsToGive.RandomItem()));
+            
+            var range = Random.Range(0f, 100f);
+            if (range > 50f) Timing.CallDelayed(0.1f, () => player.CurrentItem = items.RandomItem());
+            if (range > 50f) Timing.CallDelayed(0.1f, () => customItems.RandomItem().Give(player));
         }
         public void PickingScp1162(PickingUpItemEventArgs ev)
         {
