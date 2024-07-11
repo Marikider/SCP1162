@@ -57,19 +57,12 @@ namespace SCP1162
         private static void GiveItem(Player player)
         {
             var items = Plugin.Instance.Config.ItemsToGive.Select(itemType => Item.Create(itemType)).ToList();
-            var customItems = new List<CustomItem>();
-            foreach (var customItem in Plugin.Instance.Config.CustomItemsToGive) if (CustomItem.TryGet(customItem, out var verifiedCustomItem)) customItems.Add(verifiedCustomItem);
             
             player.ShowHint(Plugin.Instance.Translation.InteractionHint,20);
             player.RemoveHeldItem();
             player.CurrentItem = null;
             
-            var range = Random.Range(0f, 100f);
-            if (range > 50f) Timing.CallDelayed(0.1f, () => player.CurrentItem = items.RandomItem());
-           
-            var type = customItems.RandomItem().Type;
-            if (range < 50f) Timing.CallDelayed(0.1f, () => customItems.RandomItem().Give(player));
-            if (player.Inventory.TryGetInventoryItem(type, out var itemBase)) itemBase.EquipUpdate();
+            Timing.CallDelayed(0.1f, () => player.CurrentItem = items.RandomItem());
         }
         public void PickingScp1162(PickingUpItemEventArgs ev)
         {
